@@ -1,8 +1,10 @@
+#ifndef _CUSTOM_FUNCTIONS_H
+#define _CUSTOM_FUNCTIONS_H
 #include "common.h"
 
-#include <Stepper.h>
 
 Stepper stp(stepsPerRevolution, PIN_STP[0], PIN_STP[1], PIN_STP[2],PIN_STP[3]);
+LiquidCrystal_I2C lcd(0x27,16,2);
 
 void pumpON()
 {
@@ -25,3 +27,4 @@ void changeValve(bool clockwise, int step)
     stp.step(-step);
   }
 }
+#endif
