@@ -1,0 +1,15 @@
+---
+LiquidCrystal:
+ -SDA - A4
+ -SCL - A5
+Stepper:
+ - In1 - D8
+ - In2 - D9
+ - In3 - D10
+ - In4 - D11
+Relay:
+  - Signal - D13
+Encoder:
+  - S1 - D2
+  - S2 - D3
+  - Key - D4
