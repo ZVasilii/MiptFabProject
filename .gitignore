@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+.vscode
+ENCODER_EXAMPLE.ino
