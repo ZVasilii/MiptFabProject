@@ -1,27 +1,33 @@
 #include "common.h"
 #include "functions.h"
 
-void setup()
-{
-  stp.setSpeed(10);
-  pinMode(PIN_RELAY, OUTPUT);
+String strState[NUM_STATES] = {"FIRST      ", "SECOND      ", "THIRD       ",
+                               "FOURTH     ", "FIFTH       "};
+int currentState = 0;
+uint16_t lastMillis = 0;
+const uint16_t millisThreshHold = 500;
 
+void setup() {
   lcd.init();
   lcd.backlight();// Включаем подсветку дисплея
-  lcd.print("Hello, world");
-  lcd.setCursor(8, 1);
-  lcd.print("LCD 1602");
+  lcd.print("BAR MACHINE");
+  Serial.begin(9600);
+  delay(500);
+  lcd.clear();
 }
 
-void loop()
-{
-  lcd.setCursor(0, 1);
-  lcd.print(millis()/1000);
-  /*
-  changeValve(true, 500);
-  pumpON();
-  delay(500);
-  pumpOFF();
-  delay(500);
-  */
+void loop() {
+  enc.tick();
+
+  if (enc.turn()) {
+    //Serial.println("TURN");
+    currentState = changeState(enc.dir(), currentState);
+    //Serial.println(currentState);
+  }
+
+  if (millis() - lastMillis > millisThreshHold)
+  {
+    updateLCD(enc.click(), strState[currentState]);
+    lastMillis = millis();
+  }
 }
