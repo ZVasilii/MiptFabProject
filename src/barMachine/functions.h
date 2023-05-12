@@ -6,6 +6,7 @@
 Stepper stp(stepsPerRevolution, PIN_STP[0], PIN_STP[1], PIN_STP[2],PIN_STP[3]);
 LiquidCrystal_I2C lcd(0x27,16,2);
 EncButton2<EB_ENCBTN> enc(INPUT, PIN_ENC[0], PIN_ENC[1], PIN_ENC[2]);
+GyverHX711 weigthSensor(PIN_WEIGHT_DATA, PIN_WEIGHT_SCK, HX_GAIN64_A);
 
 
 void pumpON()
@@ -53,6 +54,21 @@ void updateLCD(bool click, const String& state)
     lcd.print("START!        ");
   else
     lcd.print("Press button!");
+}
+
+//WARNING! DELAY INSIDE FOR CALIBRATION
+void calibrateWeight()
+{
+  delay(500);
+  weigthSensor.tare();
+}
+
+long getWeightValue()
+{
+  if (weigthSensor.available())
+    return weigthSensor.read();
+  else
+    return 0l;
 }
 
 #endif

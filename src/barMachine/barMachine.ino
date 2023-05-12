@@ -8,6 +8,7 @@ uint16_t lastMillis = 0;
 const uint16_t millisThreshHold = 500;
 
 void setup() {
+  calibrateWeight();
   lcd.init();
   lcd.backlight();// Включаем подсветку дисплея
   lcd.print("BAR MACHINE");
@@ -29,5 +30,6 @@ void loop() {
   {
     updateLCD(enc.click(), strState[currentState]);
     lastMillis = millis();
+    auto weight = getWeightValue();
   }
 }
