@@ -45,13 +45,16 @@ int changeState(int direction, int currentState)
   return newState;
 }
 
-void updateLCD(bool click, const String& state)
+void updateLCD(bool click, const String& state, long weight)
 {
   lcd.setCursor(0, 0);
-  lcd.print(state);
+  //lcd.print(String(state));
+  lcd.print(String(weight));
+  lcd.setCursor(5, 0);
+  lcd.print(String(" " + state));
   lcd.setCursor(0, 1);
   if (click)
-    lcd.print("START!        ");
+    lcd.print(String("START!        "));
   else
     lcd.print("Press button!");
 }

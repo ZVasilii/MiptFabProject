@@ -15,4 +15,5 @@ const char PIN_BTTN = 2;
 const char NUM_STATES = 5;
 const char PIN_WEIGHT_DATA = 6;
 const char PIN_WEIGHT_SCK = 5;
+const char PIN_BUZZER = 12;
 #endif
