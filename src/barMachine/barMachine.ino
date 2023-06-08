@@ -1,8 +1,7 @@
 #include "common.h"
 #include "functions.h"
 
-String strState[NUM_STATES] = {"FIRST ", "SECOND", "THIRD ",
-                               "FOURTH", "FIFTH "};
+String strState[NUM_STATES] = {"VODKA",  "JUICE ", "SCREW "};
 enum PUMP_STATE {ON, OFF};
 
 
@@ -19,11 +18,17 @@ long weight = 0;
 long weightThreshold = 600;
 
 void setup() {
+  pinMode(PIN_RELAY, OUTPUT);
+  pinMode(PIN_DIODE, OUTPUT);
+  stp.setSpeed(10);
+  Serial.begin(9600);
+  srv.attach(PIN_SERVO);
+  srv.write(SERVO_DEFAULT);
+
   calibrateWeight();
   lcd.init();
   lcd.backlight();// Включаем подсветку дисплея
   lcd.print("BAR MACHINE V1");
-  Serial.begin(9600);
   delay(500);
   lcd.clear();
   lcd.print("Calibrated");
@@ -62,6 +67,7 @@ void loop() {
   }
 
 
+  /*
   if (pumpState == ON)
   {
     if (weight > weightThreshold)
@@ -70,5 +76,6 @@ void loop() {
       pumpState = OFF;
     }
   }
+  */
 
 }
