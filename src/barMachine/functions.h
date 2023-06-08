@@ -48,7 +48,8 @@ int changeState(int direction, int currentState)
 void updateLCD(bool click, const String& state, long weight)
 {
   lcd.setCursor(0, 0);
-  //lcd.print(String(state));
+  lcd.print(String("     "));
+  lcd.setCursor(0, 0);
   lcd.print(String(weight));
   lcd.setCursor(5, 0);
   lcd.print(String(" " + state));

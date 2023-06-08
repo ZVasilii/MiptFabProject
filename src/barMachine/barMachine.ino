@@ -44,10 +44,10 @@ void loop() {
   {
     weightRaw = getWeightValue();
     //CHANGE TO CALIBRATE
-    weight = map(weightRaw, -700000, 700000, 0, 1024);
+    weight = weightRaw/345;
     //~~~~~~~~~~~~~~~~~~~
-    Serial.print(String("Raw= " + weightRaw));
-    Serial.println(String("Calibrated= "  + weight));
+    Serial.println( weightRaw);
+    Serial.println(weight);
     bool btnClicked = enc.click();
     updateLCD(btnClicked, strState[currentState], weight);
     lastMillis = millis();
