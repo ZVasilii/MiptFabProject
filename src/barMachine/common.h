@@ -9,7 +9,7 @@
 
 const char PIN_RELAY = 13;
 const int stepsPerRevolution = 2048;
-const char PIN_STP[4] = {8, 9, 10, 11};
+const char PIN_STP[4] = {8, 10, 9, 11};
 const char PIN_ENC[3] = {2, 3, 4};
 const char PIN_BTTN = 2;
 const char NUM_STATES = 5;
