@@ -1,6 +1,6 @@
-#include "common.h"
-#include "functions.h"
+#include "recipies.h"
 
+enum State {VODKA, JUICE, SCREW};
 String strState[NUM_STATES] = {"VODKA",  "JUICE ", "SCREW "};
 enum PUMP_STATE {ON, OFF};
 
@@ -20,8 +20,7 @@ void setup() {
   stp.setSpeed(10);
   Serial.begin(9600);
   srv.attach(PIN_SERVO);
-  srv.write(SERVO_ATTACHED);
-  //srv.write(SERVO_DEFAULT);
+  srv.write(SERVO_DEFAULT);
 
   calibrateWeight();
   lcd.init();
@@ -54,22 +53,20 @@ void loop() {
     bool btnClicked = enc.click();
     if (btnClicked)
     {
-      Serial.println("Clicked");
+      switch (currentState)
+      {
+        case State::VODKA:
+          createVodka();
+          break;
+        case State::JUICE:
+          createJuice();
+          break;
+        case State::SCREW:
+          createScrewdriver();
+          break;
+      }
     }
     updateLCD(btnClicked, strState[currentState], weight);
     lastMillis = millis();
   }
-
-
-  /*
-  if (pumpState == ON)
-  {
-    if (weight > weightThreshold)
-    {
-      pumpOFF();
-      pumpState = OFF;
-    }
-  }
-  */
-
 }

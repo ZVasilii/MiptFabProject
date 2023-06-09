@@ -13,7 +13,7 @@
 const char PIN_WEIGHT_DATA = 6;
 const char PIN_WEIGHT_SCK = 5;
 const int PIN_RELAY = 12;
-const int PIN_SERVO = 6;
+const int PIN_SERVO = 7;
 const int PIN_DIODE = 13;
 const char PIN_STP[4] = {8, 10, 9, 11};
 const char PIN_ENC[3] = {2, 3, 4};
@@ -23,5 +23,5 @@ const int SERVICE_DELAY = 200;
 const int FULL_REVOLUTION = 2048;
 const int ONE_STEP = 980;
 const char SERVO_DEFAULT = 0;
-const char SERVO_ATTACHED = 80;
+const char SERVO_ATTACHED = 75;
 #endif

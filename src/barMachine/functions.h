@@ -123,5 +123,4 @@ long getWeightValue()
   else
     return 0l;
 }
-
 #endif

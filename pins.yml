@@ -10,10 +10,13 @@ Stepper:
  - In4 - D11
 
 Relay:
-  - Signal - D13
-
-Buzzer:
   - Signal - D12
+
+SERVO:
+  - Signal - D7
+
+DIODE:
+  - Signal - D13
 
 Encoder:
   - S1 - D2
