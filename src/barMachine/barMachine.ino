@@ -8,14 +8,11 @@ enum PUMP_STATE {ON, OFF};
 int currentState = 0;
 int pumpState = OFF;
 
-uint32_t pumpMillis = 0;
-uint32_t lastMillis = 0;
 const uint32_t millisThreshold = 500;
-const uint32_t pumpThreshold = 2000;
+uint32_t lastMillis = 0;
 
 long weightRaw = 0;
 long weight = 0;
-long weightThreshold = 600;
 
 void setup() {
   pinMode(PIN_RELAY, OUTPUT);
@@ -23,7 +20,8 @@ void setup() {
   stp.setSpeed(10);
   Serial.begin(9600);
   srv.attach(PIN_SERVO);
-  srv.write(SERVO_DEFAULT);
+  srv.write(SERVO_ATTACHED);
+  //srv.write(SERVO_DEFAULT);
 
   calibrateWeight();
   lcd.init();
@@ -54,16 +52,12 @@ void loop() {
     Serial.println( weightRaw);
     Serial.println(weight);
     bool btnClicked = enc.click();
+    if (btnClicked)
+    {
+      Serial.println("Clicked");
+    }
     updateLCD(btnClicked, strState[currentState], weight);
     lastMillis = millis();
-
-    if (btnClicked && pumpState == OFF)
-    {
-      changeValve(true, 200);
-      pumpON();
-      pumpState = ON;
-      pumpMillis = millis();
-    }
   }
 
 
