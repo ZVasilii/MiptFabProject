@@ -5,7 +5,7 @@ bool createVodka()
   if (currentValve != 0)
     changeValveR();
   pumpON();
-  delay(TMP_DELAY);
+  waitForGramms(20);
   pumpOFF();
   return true;
 }
@@ -15,7 +15,7 @@ bool createJuice()
   if (currentValve != 1)
     changeValveL();
   pumpON();
-  delay(TMP_DELAY);
+  waitForGramms(50);
   pumpOFF();
   return true;
 }
@@ -26,12 +26,12 @@ bool createScrewdriver()
     changeValveR();
   //Vodka
   pumpON();
-  delay(TMP_DELAY);
+  waitForGramms(20);
   pumpOFF();
   changeValveL();
   //Juice
   pumpON();
-  delay(TMP_DELAY);
+  waitForGramms(50);
   pumpOFF();
   return true;
 }

@@ -25,7 +25,7 @@ void setup() {
   calibrateWeight();
   lcd.init();
   lcd.backlight();// Включаем подсветку дисплея
-  lcd.print("BAR MACHINE V1");
+  lcd.print("BAR MACHINE RELEASE");
   delay(500);
   lcd.clear();
   lcd.print("Calibrated");
@@ -37,19 +37,21 @@ void loop() {
   enc.tick();
 
   if (enc.turn()) {
-    //Serial.println("TURN");
     currentState = changeState(enc.dir(), currentState);
-    //Serial.println(currentState);
+    #ifdef DEBUG
+      Serial.println(currentState);
+    #endif
   }
 
   if (millis() - lastMillis > millisThreshold)
   {
     weightRaw = getWeightValue();
     //CHANGE TO CALIBRATE
-    weight = weightRaw/345;
-    //~~~~~~~~~~~~~~~~~~~
-    Serial.println( weightRaw);
-    Serial.println(weight);
+    weight = weightRaw/WEIGHT_FACTOR;
+    #ifdef DEBUG
+      Serial.println( weightRaw);
+      Serial.println(weight);
+    #endif
     bool btnClicked = enc.click();
     if (btnClicked)
     {

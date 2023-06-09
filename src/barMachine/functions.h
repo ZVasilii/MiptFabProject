@@ -116,6 +116,7 @@ void calibrateWeight()
   weigthSensor.tare();
 }
 
+/*
 long getWeightValue()
 {
   if (weigthSensor.available())
@@ -123,4 +124,33 @@ long getWeightValue()
   else
     return 0l;
 }
+*/
+
+long getWeightValue()
+{
+  return weigthSensor.read();
+
+}
+
+void waitForGramms(long gramms)
+{
+  Serial.println("WAIT");
+  long millisThreshold = 100;
+  long initialWeight = getWeightValue() / WEIGHT_FACTOR;
+  Serial.println(initialWeight);
+
+  long lastMillis = millis();
+  while (true)
+  if (millis() - lastMillis > millisThreshold)
+  {
+    long newWeight = getWeightValue() / WEIGHT_FACTOR;
+    Serial.println(initialWeight);
+    if (newWeight - initialWeight > gramms)
+    {
+      return;
+    }
+    lastMillis = millis();
+  }
+}
+
 #endif
